@@ -3,8 +3,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import './index.css'
 
-function FormularioCadastro() {
+function FormularioCadastro({ onSubmit, validarCPF }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
 
@@ -12,11 +13,14 @@ function FormularioCadastro() {
   const [promocoes, setPromocoes] = useState(true);
   const [novidades, setNovidades] = useState(true);
 
+  const [erros, setErros] = useState({ cpf: { valido: true, texto: "" } });
+
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        console.log({nome, sobrenome, cpf, promocoes, novidades});
+        // props.onSubmit({nome, sobrenome, cpf, promocoes, novidades})
+        onSubmit({ nome, sobrenome, cpf, promocoes, novidades })
       }}
     >
       <TextField
@@ -47,11 +51,17 @@ function FormularioCadastro() {
         value={cpf}
         onChange={(event) => {
           let tmpCpf = event.target.value;
-          if (tmpCpf >= 11) {
-            tmpCpf = tmpCpf.substr(0,11);
-          }
+          // if (tmpCpf >= 11) {
+          //   tmpCpf = tmpCpf.substr(0,11);
+          // }
           setCpf(tmpCpf);
         }}
+        onBlur={(event) => {
+          const ehValido = validarCPF(cpf)
+          setErros({ cpf: ehValido })
+        }}
+        error={!erros.cpf.valido}
+        helperText={erros.cpf.texto}
         margin="normal"
         size="small"
         fullWidth
@@ -66,11 +76,10 @@ function FormularioCadastro() {
           setPromocoes(event.target.checked)
         }}
         control={
-        <Switch
-        
-        />
-      } 
-      label="Promoções"
+          <Switch
+          />
+        }
+        label="Promoções"
       />
       <FormControlLabel
         checked={novidades}
@@ -78,18 +87,17 @@ function FormularioCadastro() {
           setNovidades(event.target.checked)
         }}
         control={
-        <Switch 
-         
-        />
-      } 
-      label="Novidades"
+          <Switch
+          />
+        }
+        label="Novidades"
       />
 
       <Button
         type="submit"
         size="small"
         variant="contained"
-        color="success">
+        color="primary">
         Cadastrar
       </Button>
     </form>
