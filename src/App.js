@@ -1,15 +1,12 @@
 import React from 'react'
-import './App.css';
 import FormularioCadastro from './components/FormularioCadastro/FormularioCadastro';
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
+import {Container, Typography} from '@material-ui/core'
 import '@fontsource/roboto/300.css';
 
 function App() {
   return (
     <Container component="article" maxWidth="sm">
       <Typography variant="h4" align="center" component="h1">Formulario De Cadastro</Typography>
-      
       <FormularioCadastro onSubmit={enviarForm} validarCPF={validarCPF} />
     </Container>
   );
