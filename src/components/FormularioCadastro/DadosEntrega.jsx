@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TextField, Button } from '@material-ui/core';
 
-const DadosEntrega = () => {
+const DadosEntrega = ({ enviarForm }) => {
+  const [cep, setCep] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [numero, setNumero] = useState("");
+  const [estado, setEstado] = useState("");
+  const [cidade, setCidade] = useState("");
   return (
-    <form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault()
+        enviarForm({ cep, endereco, numero, estado, cidade })
+      }}
+    >
       <TextField
+        value={cep}
+        onChange={(event) => {
+          setCep(event.target.value)
+        }}
         margin="normal"
         size="small"
         type="number"
@@ -13,6 +27,10 @@ const DadosEntrega = () => {
         variant="outlined"
       />
       <TextField
+        value={endereco}
+        onChange={(event) => {
+          setEndereco(event.target.value)
+        }}
         type="text"
         margin="normal"
         size="small"
@@ -22,6 +40,10 @@ const DadosEntrega = () => {
         variant="outlined"
       />
       <TextField
+        value={numero}
+        onChange={(event) => {
+          setNumero(event.target.value)
+        }}
         margin="normal"
         size="small"
         type="number"
@@ -30,6 +52,10 @@ const DadosEntrega = () => {
         variant="outlined"
       />
       <TextField
+        value={estado}
+        onChange={(event) => {
+          setEstado(event.target.value)
+        }}
         margin="normal"
         size="small"
         type="text"
@@ -38,6 +64,10 @@ const DadosEntrega = () => {
         variant="outlined"
       />
       <TextField
+        value={cidade}
+        onChange={(event) => {
+          setCidade(event.target.value)
+        }}
         margin="normal"
         size="small"
         type="text"
