@@ -9,9 +9,6 @@ Formulario de Cadastro Utilizando Material UI.
 [material-ui](https://mui.com/pt/getting-started/usage/) bootstrap.
 
 ### `npm install @material-ui/core@next @emotion/react @emotion/styled`
-_____
-
-**Em construção...**
 ______
 ## Author 🚀
 **Larissa Vilela Sobral**
